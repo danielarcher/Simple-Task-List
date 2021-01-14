@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+
+  web:
+    image: library/php:7.4
+    command: php -S 0.0.0.0:80 -t /var/www/public
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
