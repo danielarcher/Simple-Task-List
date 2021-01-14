@@ -15,3 +15,24 @@ Each task contains
 - id (integer)
 - description (text)
 - is_completed (boolean)
+
+# About this branch
+## Level 1 - Single file implementation
+More basic as possible, here we can see one-file implementation of the desired functionality.
+
+1. We parse the received url
+2. Create the data file if not exists
+3. Load the resource list from the file
+4. Add/Update the resource
+5. Replace the content with the new resource list
+
+## Test cases 
+Passing
+ 
+    PHPUnit 8.5.13 by Sebastian Bergmann and contributors.
+    
+    Time: 1.26 seconds, Memory: 6.00 MB
+    
+    OK (3 tests, 5 assertions)
+    
+    Process finished with exit code 0

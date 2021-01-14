@@ -76,4 +76,9 @@ class RestApiTest extends TestCase
         $this->assertNotEmpty($list);
         $this->assertTrue($list[0]['is_completed']);
     }
+
+    public function tearDown(): void
+    {
+        unlink('/var/tmp/tasks.txt');
+    }
 }
