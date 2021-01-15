@@ -17,3 +17,7 @@ Each task contains
 - is_completed (boolean)
 
 # About this branch
+
+# Hours of work
+
+# Tests
