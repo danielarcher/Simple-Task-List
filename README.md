@@ -17,3 +17,13 @@ Each task contains
 - is_completed (boolean)
 
 # About this branch
+
+Slim 4 framework for routing + database storage
+
+This is a very simple implementation of the Slim4 framework, using only the `php-di` for containers and PDO for 
+database connection.
+
+We created 3 handlers classes just for minimal organization: `TaskCreate`, `TaskComplete` and `TaskList`.
+The data flow keep the same as before, we receive the data and stead of use datafile storage, we use mysql database.
+
+In the next step, we are going to see a more MVP structure, based on this branch. 

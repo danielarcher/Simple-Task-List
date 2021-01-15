@@ -12,3 +12,7 @@ $app->get('/', function (Request $request, Response $response) {
     $response->getBody()->write('ok');
     return $response;
 });
+
+$app->get('/tasks', TaskList::class);
+$app->post('/task', TaskCreate::class);
+$app->patch('/task/{id}/complete', TaskComplete::class);
