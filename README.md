@@ -15,3 +15,5 @@ Each task contains
 - id (integer)
 - description (text)
 - is_completed (boolean)
+
+# About this branch
