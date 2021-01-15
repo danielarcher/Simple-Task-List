@@ -2,9 +2,18 @@ version: '3.3'
 services:
 
   web:
-    image: library/php:7.4
+    build: .
     command: php -S 0.0.0.0:80 -t /var/www/public
     ports:
       - 80:80
     volumes:
       - ./:/var/www
+
+  mysql:
+    image: mysql:8
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    ports:
+      - 3306:3306
