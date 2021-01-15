@@ -24,14 +24,24 @@ class RestApiTest extends TestCase
     public function test_it_should_create_new_task()
     {
         $payload = [
-            'description' => 'my task'
+            'description' => mt_rand()
         ];
         $response = $this->client->post('/task',null,json_encode($payload))->send();
 
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    public function test_it_should_list_tasks()
+    public function test_it_should_create_non_completed_new_task()
+    {
+        $payload = [
+            'description' => mt_rand()
+        ];
+        $response = $this->client->post('/task',null,json_encode($payload))->send();
+        $resource = json_decode($response->getBody(true),true);
+        $this->assertFalse((bool) $resource['is_completed']);
+    }
+
+    public function test_it_should_list_tasks_after_creation()
     {
         /**
          * Create a new task
@@ -39,16 +49,24 @@ class RestApiTest extends TestCase
         $payload = [
             'description' => mt_rand()
         ];
-        $this->client->post('/task',null,json_encode($payload))->send();
+        $this->client->post('/task', ['Content-Type' => 'application/json'],json_encode($payload))->send();
 
         /**
-         * retrieve task list
+         * Retrieve task list
          */
         $response = $this->client->get('/tasks')->send();
 
+        /**
+         * Assert list is not empty
+         */
         $list = json_decode($response->getBody(true),true);
         $this->assertNotEmpty($list);
-        $this->assertEquals($payload['description'], $list[0]['description']);
+
+        /**
+         * Assert the new resource is part of the list
+         */
+        $lastResourceAdded = array_pop($list);
+        $this->assertEquals($payload['description'], $lastResourceAdded['description']);
     }
 
     public function test_it_should_complete_a_task_and_change_status_to_completed()
@@ -59,7 +77,7 @@ class RestApiTest extends TestCase
         $payload = [
             'description' => mt_rand()
         ];
-        $response = $this->client->post('/task',null,json_encode($payload))->send();
+        $response = $this->client->post('/task', ['Content-Type' => 'application/json'],json_encode($payload))->send();
         $createdResource = json_decode($response->getBody(true),true);
 
         /**
@@ -68,12 +86,12 @@ class RestApiTest extends TestCase
         $this->client->patch('/task/'.$createdResource['id'].'/complete')->send();
 
         /**
-         * retrieve task list
+         * Retrieve task list
          */
         $response = $this->client->get('/tasks')->send();
 
         $list = json_decode($response->getBody(true),true);
         $this->assertNotEmpty($list);
-        $this->assertTrue($list[0]['is_completed']);
+        $this->assertTrue((bool) $list[$createdResource['id']-1]['is_completed']);
     }
 }
