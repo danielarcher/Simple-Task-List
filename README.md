@@ -18,7 +18,7 @@ Each task contains
 
 # About this branch
 
-Slim 4 framework for routing + database storage
+### Level 2 - Slim 4 framework for routing + database storage
 
 This is a very simple implementation of the Slim4 framework, using only the `php-di` for containers and PDO for 
 database connection.
@@ -26,4 +26,18 @@ database connection.
 We created 3 handlers classes just for minimal organization: `TaskCreate`, `TaskComplete` and `TaskList`.
 The data flow keep the same as before, we receive the data and stead of use datafile storage, we use mysql database.
 
-In the next step, we are going to see a more MVP structure, based on this branch. 
+In the next step, we are going to see a more MVP structure, based on this branch.
+
+### Hours of work
+2~3 hours
+More difficult part: creating the slim configuration
+
+# Tests
+
+    PHPUnit 8.5.13 by Sebastian Bergmann and contributors.
+    
+    Time: 6.21 seconds, Memory: 6.00 MB
+    
+    OK (4 tests, 6 assertions)
+    
+    Process finished with exit code 0
