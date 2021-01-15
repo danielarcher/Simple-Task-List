@@ -26,6 +26,9 @@ More basic as possible, here we can see one-file implementation of the desired f
 4. Add/Update the resource
 5. Replace the content with the new resource list
 
+## Hours used for development
+1~2 hours
+ 
 ## Test cases 
 Passing
  
